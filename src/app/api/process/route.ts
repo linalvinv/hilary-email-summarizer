@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       1.  **Body First (with Pronoun Resolution):** Read the email body for the requester's identity.
           - **Crucial Sub-Rule:** If the body uses a pronoun like "I" or "we" to describe the person printing (e.g., "I am printing it," or "We are printing for her"), you MUST identify the sender of that specific message segment. Find the 'From:' line that directly precedes that text to determine the true identity.
           - If the body explicitly names a person (e.g., "Huma here, please print..."), use that name.
-      2.  **Fallback to 'From:' Header:** ONLY if the body does not identify the person (e.g., the body is just "Pls print"), then use the name from the 'From:' line of the most recent message in the thread.
+      2.  **Fallback to 'To:' Header:** ONLY if the body does not identify the person (e.g., the body is just "Pls print"), then use the name from the 'To:' line of the most recent message in the thread.
       3.  **Last Resort:** If no sender can be identified, return "Unknown".
 
       ---
